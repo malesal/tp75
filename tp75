@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int BuscarModa(const vector<int>A);
+int main() {
+    int N;
+    cout << "Ingrese la cantidad de elementos del vector: ";
+    cin >> N;
+
+    vector<int> A(N);
+
+    for (int i = 0; i < N; i++) {
+        A[i] = rand() % 10;
+    }
+    sort(A.begin(), A.end());
+
+    cout << "Vector ordenado: ";
+    for (int num : A) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    int moda = BuscarModa(A);
+
+    cout << "El elemento que más se repite en el vector es: " << moda << endl;
+    return 0;
+}
+int BuscarModa(const vector<int> A) {
+    vector<int> frecuencia(10, 0); 
+
+    for (int num : A) {
+        frecuencia[num]++; 
+    }
+
+    int moda = 0;
+    int maxFrecuencia = 0;
+
+    for (int i = 0; i < 10; i++) {
+        if (frecuencia[i] > maxFrecuencia) {
+            maxFrecuencia = frecuencia[i];
+            moda = i;
+        }
+    }
+    return moda;
+}
